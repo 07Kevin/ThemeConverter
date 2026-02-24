@@ -1,3 +1,11 @@
+
+# Ignore all folders that start with "."
+.*
+
+# Ignore all out and build folders
+out/
+build/
+
 # Prerequisites
 *.d
 
