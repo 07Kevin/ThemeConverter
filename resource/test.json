@@ -1,0 +1,8 @@
+{
+  "name": "Volvo",
+  "address": {
+    "street": "Main Street 12",
+    "city": "Stockholm",
+    "country": "Sweden"
+  }
+}
