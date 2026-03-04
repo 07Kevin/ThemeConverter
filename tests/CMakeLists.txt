@@ -76,3 +76,31 @@ if( USE_TEST_ )
       # target_link_options(${TEST_NAME_} PRIVATE -fsanitize=address)
    endif()
 endif()
+
+
+
+  # -- TESTS for xml
+set( USE_TEST_ ON )
+if( USE_TEST_ )
+   set(TEST_NAME_ "TEST_xml")
+   add_executable(${TEST_NAME_} "main.cpp" ${external_gd_core} ${external_catch2}
+      "TEST_xml.cpp"
+   )
+   target_include_directories(${TEST_NAME_} PRIVATE ${CMAKE_SOURCE_DIR}/external)
+   target_compile_definitions(${TEST_NAME_} PRIVATE CATCH_AMALGAMATED_CUSTOM_MAIN _CRT_SECURE_NO_WARNINGS)
+
+   # target_compile_options(${TEST_NAME_} PRIVATE $<$<CONFIG:Debug>:/MTd> $<$<CONFIG:Release>:/MT>)
+   # target_link_options(${TEST_NAME_} PRIVATE $<$<CONFIG:Debug>:/MTd> $<$<CONFIG:Release>:/MT>)
+
+   if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+      # target_compile_options(${TEST_NAME_} PRIVATE $<$<CXX_COMPILER_ID:MSVC>:/MD>)
+      target_compile_options(${TEST_NAME_} PRIVATE -fsanitize=address -g -fno-omit-frame-pointer)
+      target_link_options(${TEST_NAME_} PRIVATE -fsanitize=address)
+   elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+      target_compile_options(${TEST_NAME_} PRIVATE -fsanitize=address -g -fno-omit-frame-pointer)
+      target_link_options(${TEST_NAME_} PRIVATE -fsanitize=address)
+   else()
+      # target_compile_options(${TEST_NAME_} PRIVATE -fsanitize=address)
+      # target_link_options(${TEST_NAME_} PRIVATE -fsanitize=address)
+   endif()
+endif()
