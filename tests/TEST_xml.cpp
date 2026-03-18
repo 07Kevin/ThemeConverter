@@ -43,5 +43,20 @@ TEST_CASE("Read xml file", "[read]")
 
 TEST_CASE("Write xml file", "[write]")
 {
+   pugi::xml_document document_;
 
+   pugi::xml_parse_result result_ = document_.load_file("D:/temp/resources/xml_test/test.xml");
+
+   if( !result_ )
+   {
+      std::cout << "failed to open file\n";
+      return;
+   }
+
+   pugi::xml_node xml_nodePerson = document_.child("person");
+   pugi::xml_node xml_nodeEmail = xml_nodePerson.append_child("email");
+
+   xml_nodeEmail.text().set("jonas@gmail.com");
+
+   document_.save_file("D:/temp/resources/xml_test/test.xml");
 }

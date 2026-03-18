@@ -1,8 +1,9 @@
 {
-  "name": "Volvo",
-  "address": {
-    "street": "Main Street 12",
-    "city": "Stockholm",
-    "country": "Sweden"
-  }
+   "address": {
+      "city": "Gothenburg",
+      "country": "Sweden"
+   },
+   "age": 25,
+   "language": "Swedish",
+   "name": "Lexus"
 }
